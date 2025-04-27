@@ -1,0 +1,183 @@
+:root {
+  --bg-color: #fff0f5;
+  --text-color: #4b3b47;
+  --accent-color: #f8e1e7;
+  --highlight-color: #c78fa2;
+  --brand-color: #e295b5;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+header {
+  background-color: white;
+  padding: 20px 30px;
+  border-bottom: 1px solid var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.logo-gice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-gice img {
+  height: 40px;
+}
+
+.logo-gice h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: var(--brand-color);
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.partedecima {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  gap: 20px;
+}
+
+.partedecima a {
+  text-decoration: none;
+  color: var(--highlight-color);
+  font-weight: bold;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+  
+}
+
+.partedecima a:hover {
+  transform: scale(1.1);
+}
+
+.hamburguer {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  cursor: pointer;
+  display: none;
+  padding: 10px;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.menu {
+  display: none;
+  flex-direction: column;
+  background-color: #ffe6f0;
+  padding: 15px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.menu a {
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--text-color);
+  padding: 12px;
+  border-bottom: 1px solid var(--accent-color);
+  transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+.menu a:hover {
+  transform: scale(1.1);
+  font-size: 1.2rem;
+}
+
+.menu a:last-child {
+  border-bottom: none;
+}
+
+input[type="checkbox"]:checked ~ .menu {
+  display: flex;
+  max-height: 500px;
+}
+
+.partefotos {
+  padding: 50px 20px;
+  background-color: white;
+  text-align: center;
+}
+
+.partefotos h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.partefotos p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.vestidinhos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.vestidinhos img {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.sobre {
+  padding: 40px 20px;
+  background-color: #fcdde5;
+  text-align: center;
+}
+
+footer {
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid var(--accent-color);
+}
+
+.bichinhodasmidias i:hover {
+  font-size: 1.2rem;
+  margin: 0 10px;
+  color: var(--highlight-color);
+  transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+
+@media (max-width: 768px) {
+  .partedecima {
+    display: none;
+  }
+
+  .hamburguer {
+    display: block;
+  }
+
+  .vestidinhos {
+    flex-direction: column;
+    align-items: center;
+  }
+}
