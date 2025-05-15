@@ -1,0 +1,29 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+
+:root {
+  --bg-color: #fff0f5;
+  --text-color: #4b3b47;
+  --accent-color: #f8e1e7;
+  --highlight-color: #c78fa2;
+  --brand-color: #e295b5;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(90deg , var(--highlight-color) , var(--accent-color));
+    font-family: Arial, sans-serif; 
+}
+
+.container{
+    width: 500px;
+    height: 400px;
+    background-color: #4b3b47;
+    padding: 10px;
+}
