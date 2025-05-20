@@ -24,11 +24,11 @@ body{
 .container{
     width: 500px;
     height: 400px;
-    background-color: #4b3b47;
+    background-color: var(--highlight-color);
     padding: 10px;
     display: flex;
     flex-direction: column;
-
+    border-radius: 20px;
 }
 
 /* .texto{
@@ -46,7 +46,7 @@ body{
     text-align: center;
     padding-top: 20px;
     color: white;
-    
+    border-radius: 20px;
 }
 
 .inputs{
@@ -76,11 +76,29 @@ input[type="password"] {
     text-align: center;
 }
 
+input{
+    border-radius: 10px;
+    border: none;
+    padding: 1px;
+}
 
 button{
+    cursor: pointer;
     margin-top: 30px;
     background-color: #e295b5;
     width: 30%;
     height: 40px;
     color: white;
+    border: none;
+    border-radius: 10px;
+    transition: .3s;
+}
+button:active{
+   transform: scale(1.2);
+} 
+button:hover{
+    border: 0;
+   border-bottom:1px solid #e295b5 ;
+   border-left: 1px  solid #e295b5;
+   border-right: 1px solid #e295b5;
 }
