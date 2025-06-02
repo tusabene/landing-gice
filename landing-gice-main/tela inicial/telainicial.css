@@ -152,15 +152,15 @@ nav.cabeçalho a:hover::after {
 
 .card {
   background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  height: 250px;
+  border-radius: 15px;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 16px rgba(219, 7, 184, 0.15);
 }
 
 .card img {
@@ -177,8 +177,8 @@ nav.cabeçalho a:hover::after {
 
 .info h3 {
   margin: 10px 0 5px;
-  color: #000;
-  font-weight: 400;
+  color: #00ff62;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .info p {
