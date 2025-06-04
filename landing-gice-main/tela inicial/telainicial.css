@@ -70,7 +70,7 @@ nav.cabeçalho a:hover::after {
   cursor: pointer;
 }
 
-/* MOBILE */
+
 @media (max-width: 768px) {
   nav.cabeçalho {
     display: none;
@@ -80,7 +80,7 @@ nav.cabeçalho a:hover::after {
     padding: 30px;
   }
 
-  /* Menu hamburguer escondido */
+  
   .hamburguer {
     display: none;
     background-color: #ffcce0;
@@ -90,12 +90,12 @@ nav.cabeçalho a:hover::after {
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   }
 
-  /* Quando ativo, mostra o menu */
+  
   .hamburguer.active {
     display: block;
   }
 
-  /* Links do menu hamburguer */
+  
   .hamburguer a {
     display: block;
     padding: 12px 0;
@@ -113,12 +113,12 @@ nav.cabeçalho a:hover::after {
     color: #a61e5c;
   }
 
-  /* Ícone do hambúrguer sempre visível no mobile */
+  
   .icons .fa-bars {
     display: block;
   }
 
-  /* Outros ícones continuam */
+  
   .fas {
     transition: 0.4s;
   }
@@ -128,7 +128,7 @@ nav.cabeçalho a:hover::after {
   }
 }
 
-/* DESKTOP */
+
 @media (min-width: 769px) {
   .hamburguer {
     display: none !important;
