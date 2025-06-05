@@ -199,5 +199,8 @@ footer {
   padding: 15px;
   text-align: center;
   color: #a61e5c;
-  margin-top: 40px;
+  position: absolute;
+  top: 100%;
+  transform: translateY(-100%);
+  width: 100vw;
 }
