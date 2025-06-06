@@ -1,18 +1,14 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 
-const connection = mysql.createConnection({
+
+const connection = mysql.createPool({
   host: 'localhost',
-  user: 'root',       
-  password: '',       
-  database: 'gice' 
-});
-
-connection.connect((err) => {
-  if (err) {
-    console.error('Erro ao conectar no banco:', err);
-  } else {
-    console.log('Conectado ao MySQL com sucesso!');
-  }
+  user: 'root',
+  password: '', // A senha do seu banco
+  database: 'gice',
+  waitForConnections: true, // Permitir múltiplas conexões
+  connectionLimit: 10, // Limitar número de conexões simultâneas
+  queueLimit: 0 // Não limita o número de requisições na fila
 });
 
 module.exports = connection;
