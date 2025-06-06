@@ -1,98 +1,87 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const cadastroForm = document.getElementById('form-cadastro');
-  const loginForm = document.getElementById('form-login');
+const api = 'http://localhost:3000/api';
+function showFlashMessage(mensagem, tipo = 'success') {
+  const flash = document.getElementById('flash-message');
+  if (!flash) return;
 
-  // Função de Cadastro
-  if (cadastroForm) {
-    cadastroForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
+  flash.textContent = mensagem;
+  flash.className = `flash ${tipo}`;
+  
+  // Remove a classe 'hidden' se ainda estiver
+  flash.classList.remove('hidden');
 
-      // Pega os dados do formulário de cadastro
-      const nome = document.getElementById('nome').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const senha = document.getElementById('senha').value.trim();
+  setTimeout(() => {
+    flash.classList.add('hidden');
+  }, 3000);
+}
 
-      // Verifica se todos os campos estão preenchidos
-      if (!nome || !email || !senha) {
-        alert('Preencha todos os campos!');
-        return;
-      }
+// Cadastro
+const formCadastro = document.getElementById('form-cadastro');
+if (formCadastro) {
+  formCadastro.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-      try {
-        // Envia os dados para o servidor
-        const res = await fetch('http://localhost:3000/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: nome,
-            email: email,
-            password: senha
-          })
-        });
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
 
-        const data = await res.json();
+    try {
+      const cadastroResponse = await axios.post(`${api}/cadastro`, { nome, email, senha });
+      showFlashMessage(cadastroResponse.data.mensagem, 'success');
+      setTimeout(async () => {
+        const loginResponse = await axios.post(`${api}/login`, { email, senha });
+        localStorage.setItem('user', JSON.stringify(loginResponse.data.usuario));
+        window.location.href = '../../inicial/telainicial.html';
+      }, 2000);
 
-        // Se a resposta for positiva (status 201), redireciona para tela inicial
-        if (res.ok) {
-          localStorage.setItem('usuario', JSON.stringify({
-            id: data.id || null,
-            name: nome,
-            email: email
-          }));
+    } catch (err) {
+      const msg = err.response?.data?.mensagem || 'Erro no cadastro (sem mensagem detalhada)';
+      showFlashMessage(msg, 'error');
+    }
+  });
+}
 
-          alert('Cadastro realizado com sucesso!');
-          window.location.href = '../../inicial/telainicial.html';
-        } else {
-          alert(data.message || 'Erro ao cadastrar');
-        }
-      } catch (err) {
-        alert('Erro ao se conectar com o servidor');
-        console.error(err);
-      }
-    });
-  }
+// Login
+const formLogin = document.getElementById('form-login');
+if (formLogin) {
+  formLogin.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-  // Função de Login
-  if (loginForm) {
-    loginForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const senha = document.getElementById('loginSenha').value;
 
-      // Pega os dados do formulário de login
-      const email = document.getElementById('loginEmail').value.trim();
-      const senha = document.getElementById('loginSenha').value.trim();
+    try {
+      const res = await axios.post(`${api}/login`, { email, senha });
+      localStorage.setItem('user', JSON.stringify(res.data.usuario));
+      window.location.href = '../../inicial/telainicial.html';
+    } catch (err) {
+      const msg = err.response?.data?.mensagem || 'Erro no login';
+      showFlashMessage(msg, 'error');
+    }
+  });
+}
 
-      // Verifica se todos os campos estão preenchidos
-      if (!email || !senha) {
-        alert('Preencha todos os campos!');
-        return;
-      }
+// Logout
+function logout() {
 
-      try {
-        // Envia os dados de login para o servidor
-        const res = await fetch('http://localhost:3000/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: email,
-            password: senha
-          })
-        });
+  localStorage.removeItem('user');
+  localStorage.removeItem('token');
+  window.location.href = '../Auth/Login/Login.html';
+}
+const logoutButton = document.getElementById('logout-button');
+if (logoutButton) {
+  logoutButton.addEventListener('click', logout);
+}
 
-        const data = await res.json();
+// Home e Profile
+const userInfo = JSON.parse(localStorage.getItem('user'));
+if (userInfo) {
+  const nomeSpan = document.getElementById('user-nome');
+  const emailSpan = document.getElementById('user-email');
+  const showName = document.getElementById('user-name');
 
-        // Se o login for bem-sucedido, salva os dados do usuário no localStorage
-        if (res.ok) {
-          localStorage.setItem('usuario', JSON.stringify(data));
+  if (nomeSpan) nomeSpan.innerHTML = `Seja Bem-Vindo, ${userInfo.nome} Ao <span> Restaurante Fome!! </span>`;
+  if (emailSpan) emailSpan.innerHTML = `E-mail: ${userInfo.email}`;
+  if (showName) showName.innerHTML =`Nome: ${userInfo.nome}`;
 
-          alert('Login realizado com sucesso!');
-          window.location.href = '../../inicial/telainicial.html'; // Redireciona para a página inicial
-        } else {
-          alert(data.message || 'Email ou senha incorretos');
-        }
-      } catch (err) {
-        alert('Erro ao se conectar com o servidor');
-        console.error(err);
-      }
-    });
-  }
-});
+
+}
