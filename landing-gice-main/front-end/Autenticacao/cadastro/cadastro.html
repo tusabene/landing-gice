@@ -15,22 +15,14 @@
             <h1>CADASTRE-SE NO GICE</h1>
         </div>
 
-        <div class="inputs">
-            <div class="inputDiv">
-                <label for="">Nome</label>
-                <input type="text" name="nome" placeholder="Digite seu nome...">
-            </div>
-
-            <div class="inputDiv">
-                <label>E-mail</label>
-                <input type="text" name="email" placeholder="Digite seu email...">
-            </div>
-            <div class="inputDiv">
-                <label for="">Senha</label>
-                <input type="password" name="senha" placeholder="Crie uma senha..."> 
-            </div>
-        </div>
-        <a href="../tela inicial/telainicial.html" id="linkEntrar"> <button id="entrar">Entrar</button></a>
+       <form id="form-cadastro">
+     <h2>Cadastro</h2>
+        <input type="text" id="nome" placeholder="Nome" maxlength="15" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="senha" placeholder="Senha" required />
+        <button type="submit">Cadastrar</button>
+        <p>Já tem conta? <a href="login.html">Faça login</a></p>
+     </form>
     </div>
     <script src="../api/api.js"></script>
 </body>
